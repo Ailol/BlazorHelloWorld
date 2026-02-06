@@ -1,0 +1,8 @@
+@* Routes.razor — equivalent to Angular's AppRoutingModule *@
+@* In Blazor, routes are defined on each page component with @page, not in a central file *@
+<Router AppAssembly="typeof(Program).Assembly">
+    <Found Context="routeData">
+        <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)" />
+        <FocusOnNavigate RouteData="routeData" Selector="h1" />
+    </Found>
+</Router>

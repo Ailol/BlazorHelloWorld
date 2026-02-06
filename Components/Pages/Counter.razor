@@ -1,0 +1,42 @@
+@* Counter.razor — Classic Blazor demo *@
+@* Shows event binding: Angular's (click)="increment()" becomes @onclick="Increment" *@
+@page "/counter"
+@rendermode InteractiveServer
+
+<PageTitle>Counter</PageTitle>
+
+<h2>Counter</h2>
+
+<p class="comparison">
+    <strong>Angular equivalent:</strong><br />
+    <code>(click)="increment()"</code> → <code>@@onclick="Increment"</code><br />
+    <code>{{ "{{" }} count {{ "}}" }}</code> → <code>@@count</code>
+</p>
+
+<div class="counter-section">
+    <p role="status">Current count: <strong>@count</strong></p>
+
+    <div class="button-group">
+        <button @onclick="Decrement" disabled="@(count <= 0)">➖ Decrease</button>
+        <button @onclick="Increment">➕ Increase</button>
+        <button @onclick="Reset">🔄 Reset</button>
+    </div>
+</div>
+
+@* In Angular this would be in the .ts file. In Blazor, the @code block IS the .ts file *@
+@code {
+    // This is like your component class in Angular
+    private int count = 0;
+
+    private void Increment() => count++;
+
+    private void Decrement()
+    {
+        if (count > 0) count--;
+    }
+
+    private void Reset() => count = 0;
+
+    // Note: No need for change detection or zone.js!
+    // Blazor automatically calls StateHasChanged() after event handlers.
+}

@@ -1,0 +1,22 @@
+@* MainLayout.razor — equivalent to Angular's app.component.html with <router-outlet> *@
+@* @Body is where routed page content renders, just like <router-outlet> *@
+@inherits LayoutComponentBase
+
+<header>
+    <nav>
+        <h1>🔥 Blazor Hello World</h1>
+        <div>
+            <NavLink href="/" Match="NavLinkMatch.All">Home</NavLink>
+            <NavLink href="/counter">Counter</NavLink>
+            <NavLink href="/greeting">Greeting</NavLink>
+        </div>
+    </nav>
+</header>
+
+<main>
+    @Body
+</main>
+
+<footer>
+    <p>Built with Blazor 🚀 — An Angular dev's first Blazor app</p>
+</footer>

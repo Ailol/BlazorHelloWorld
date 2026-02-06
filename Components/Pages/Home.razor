@@ -1,0 +1,38 @@
+@* Home.razor — The landing page *@
+@* @page "/" is like Angular's { path: '', component: HomeComponent } *@
+@page "/"
+
+<PageTitle>Home</PageTitle>
+
+<div class="hero">
+    <h2>Welcome, Angular Developer! 👋</h2>
+    <p>This is your first Blazor app. Here's what's happening:</p>
+
+    <div class="info-cards">
+        <div class="card">
+            <h3>📁 Components</h3>
+            <p>
+                In Angular you have <code>.ts + .html + .css</code> files.
+                In Blazor, everything lives in a single <code>.razor</code> file.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>🔗 Routing</h3>
+            <p>
+                Instead of a routing module, Blazor uses <code>@@page "/route"</code>
+                directly on each component. Check the top of this file!
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>💉 Dependency Injection</h3>
+            <p>
+                Works almost identically to Angular. Register in <code>Program.cs</code>,
+                inject with <code>@@inject</code> or constructor injection.
+            </p>
+        </div>
+    </div>
+
+    <p class="cta">👈 Try the <strong>Counter</strong> and <strong>Greeting</strong> pages to see interactivity!</p>
+</div>

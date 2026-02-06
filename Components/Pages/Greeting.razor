@@ -1,0 +1,47 @@
+@* Greeting.razor — Demonstrates two-way binding and child components *@
+@* @bind is Blazor's equivalent of Angular's [(ngModel)] *@
+@page "/greeting"
+@rendermode InteractiveServer
+
+<PageTitle>Greeting</PageTitle>
+
+<h2>Greeting Generator</h2>
+
+<p class="comparison">
+    <strong>Angular equivalent:</strong><br />
+    <code>[(ngModel)]="name"</code> → <code>@@bind="name"</code><br />
+    <code>[message]="greeting"</code> → <code>Message="@@greeting"</code> (Parameter)<br />
+    <code>(greetingClicked)="onClicked($event)"</code> → <code>OnClicked="HandleClick"</code> (EventCallback)
+</p>
+
+<div class="greeting-section">
+    <label>
+        Enter your name:
+        <input type="text" @bind="name" @bind:event="oninput" placeholder="Type here..." />
+    </label>
+
+    @* Conditional rendering: Angular's *ngIf → just use @if *@
+    @if (!string.IsNullOrWhiteSpace(name))
+    {
+        <p class="greeting-text">Hello, <strong>@name</strong>! Welcome to Blazor 🎉</p>
+
+        @* Using a child component with [Parameter] — like Angular's @Input() *@
+        <GreetingCard Name="@name" OnButtonClick="HandleCardClick" />
+    }
+
+    @if (clickMessage is not null)
+    {
+        <p class="click-result">@clickMessage</p>
+    }
+</div>
+
+@code {
+    private string name = "";
+    private string? clickMessage;
+
+    // This handles the EventCallback from the child — like subscribing to @Output()
+    private void HandleCardClick(string message)
+    {
+        clickMessage = message;
+    }
+}

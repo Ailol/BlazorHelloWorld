@@ -1,0 +1,27 @@
+@* GreetingCard.razor — A child component *@
+@* Demonstrates [Parameter] (@Input) and EventCallback (@Output) *@
+
+<div class="greeting-card">
+    <h3>👋 Greeting Card for @Name</h3>
+    <p>This component received <code>Name</code> as a <strong>[Parameter]</strong> — just like Angular's <code>@@Input()</code>.</p>
+
+    <button @onclick="NotifyParent">
+        Click me! (fires EventCallback → like Angular's @@Output)
+    </button>
+</div>
+
+@code {
+    // [Parameter] is the Blazor equivalent of Angular's @Input()
+    [Parameter]
+    public string Name { get; set; } = "";
+
+    // EventCallback is the Blazor equivalent of Angular's @Output() EventEmitter
+    [Parameter]
+    public EventCallback<string> OnButtonClick { get; set; }
+
+    private async Task NotifyParent()
+    {
+        // InvokeAsync is like Angular's this.myOutput.emit(value)
+        await OnButtonClick.InvokeAsync($"🎉 {Name} clicked the card at {DateTime.Now:HH:mm:ss}!");
+    }
+}
